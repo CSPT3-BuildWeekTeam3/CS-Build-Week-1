@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import axios from "axios";
+
+
+const url = 'https://lambda-mud-test.herokuapp.com/api/login/';
 
 export default class Login extends Component {
   constructor(props) {
@@ -24,14 +28,23 @@ export default class Login extends Component {
     // This will send a post request to the test server for now that will do what this curl does:
     // curl -X POST -H "Content-Type: application/json" -d '{"username":"testuser", "password":"testpassword"}' https://lambda-mud-test.herokuapp.com/api/login/
     event.preventDefault();
+    const acc = { username: this.state.username, password: this.state.password }
+    axios
+      .post(url, acc)
+      .then((res) => {
+        console.log(res.data)
+      })
+      .catch((err) => {
+        alert('This username and/or password does not match our records');
+      });
   }
 
   render() {
     return (
       <div>
-        Login to MUD Team 3  
+        Login to MUD Team 3
           <form onSubmit={this.handleSubmit} >
-            <div style={{display: "flex", flexDirection: "column"}}>
+          <div style={{ display: "flex", flexDirection: "column" }}>
             <label>
               Username:
               <input

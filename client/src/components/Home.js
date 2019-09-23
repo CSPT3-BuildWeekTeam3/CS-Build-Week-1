@@ -5,7 +5,8 @@ export default class Login extends Component {
     return (
       <div>
         This is the HOME componet. 
-        Navigate to /login for the login component
+        You are a logged in user!
+        Try /login and /register for other views!
       </div>
     )
   }

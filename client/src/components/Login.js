@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 
 const url = 'https://lambda-mud-test.herokuapp.com/api/login/';
@@ -66,12 +67,14 @@ export default class Login extends Component {
           <Button color="success">Submit</Button>
         </FormGroup>
       </Form>
-      <Form style={{outline: "1px solid red", width: "40%", margin: "auto", padding: "10px", marginTop: "50px"}}>
+      <Form style={{outline: "1px solid red", width: "40%", margin: "auto", padding: "5px", marginTop: "50px"}}>
         <FormGroup style={{ display: "flex", flexDirection: "column" }}>
           <FormText>
             Don't have an account?
           </FormText>
-          <Button color="warning">Create Account</Button>
+          <Link to='/register'>
+            <Button color="warning">Create Account</Button>
+          </Link>
         </FormGroup>
       </Form>
     </div>

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 const url = 'https://lambda-mud-test.herokuapp.com/api/registration/';
 
@@ -31,34 +33,45 @@ class Register extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.onSubmit} >
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <label>
+        <Form onSubmit={this.onSubmit} style={{outline: "3px solid dodgerblue", width: "40%", margin: "auto", padding: "10px", marginTop: "50px"}}>
+          <h3>Create an Account</h3>
+          <FormGroup style={{ display: "flex", flexDirection: "column" }}>
+            <Label>
               Username:
-              <input
+              <Input
                 name="username"
                 value={this.state.username}
                 onChange={this.onChange}
               />
-            </label>
+            </Label>
 
-            <label>
+            <Label>
               Password:
-              <input
+              <Input
                 name="password1"
                 value={this.state.password1}
                 onChange={this.onChange}
               />
               Re-enter Password:
-              <input
+              <Input
                 name="password2"
                 value={this.state.password2}
                 onChange={this.onChange}
               />
-            </label>
-            <input type="submit" value="Submit" />
-          </div>
-        </form>
+            </Label>
+            <Button color="success">Submit</Button>
+          </FormGroup>
+        </Form>
+        <Form style={{outline: "1px solid red", width: "40%", margin: "auto", padding: "5px", marginTop: "50px"}}>
+          <FormGroup style={{ display: "flex", flexDirection: "column" }}>
+            <FormText>
+              Already have an account?
+            </FormText>
+            <Link to='/login'>
+              <Button color="warning">Back to Login Page</Button>
+            </Link>
+          </FormGroup>
+        </Form>
       </div>
     )
   }

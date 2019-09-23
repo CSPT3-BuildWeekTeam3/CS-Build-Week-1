@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 
 const url = 'https://lambda-mud-test.herokuapp.com/api/login/';
@@ -42,30 +43,38 @@ export default class Login extends Component {
   render() {
     return (
       <div>
-        Login to MUD Team 3
-          <form onSubmit={this.handleSubmit} >
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <label>
-              Username:
-              <input
-                name="username"
-                value={this.state.username}
-                onChange={this.handleChange}
-              />
-            </label>
+        <Form onSubmit={this.handleSubmit} style={{outline: "3px solid dodgerblue", width: "40%", margin: "auto", padding: "10px", marginTop: "50px"}}>
+        <h3>Login to MUD Team 3</h3>
+        <FormGroup style={{ display: "flex", flexDirection: "column" }}>
+          <Label>
+            Username:
+            <Input
+              name="username"
+              value={this.state.username}
+              onChange={this.handleChange}
+            />
+          </Label>
 
-            <label>
-              Password:
-              <input
-                name="password"
-                value={this.state.password}
-                onChange={this.handleChange}
-              />
-            </label>
-            <input type="submit" value="Submit" />
-          </div>
-        </form>
-      </div>
+          <Label>
+            Password:
+            <Input
+              name="password"
+              value={this.state.password}
+              onChange={this.handleChange}
+            />
+          </Label>
+          <Button color="success">Submit</Button>
+        </FormGroup>
+      </Form>
+      <Form style={{outline: "1px solid red", width: "40%", margin: "auto", padding: "10px", marginTop: "50px"}}>
+        <FormGroup style={{ display: "flex", flexDirection: "column" }}>
+          <FormText>
+            Don't have an account?
+          </FormText>
+          <Button color="warning">Create Account</Button>
+        </FormGroup>
+      </Form>
+    </div>
     )
   }
 }

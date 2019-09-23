@@ -16,9 +16,10 @@ django-heroku = "*"
 django-rest-api = "*"
 dj-database-url = "*"
 whitenoise = "*"
-psycopg2-binary = "*"
+django-rest-knox = "*"
 
 [dev-packages]
+pylint = "*"
 
 [requires]
 python_version = "3.7"

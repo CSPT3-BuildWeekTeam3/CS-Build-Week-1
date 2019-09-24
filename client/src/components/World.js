@@ -1,8 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 
-const url = ''
-
 class World extends React.Component {
   constructor() {
     super();

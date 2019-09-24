@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-const url = 'https://lambda-mud-test.herokuapp.com/api/registration/';
+const url = '/registration/';
 
 class Register extends Component {
   state = {
@@ -18,10 +18,11 @@ class Register extends Component {
     e.preventDefault();
     //`curl -X POST -H "Content-Type: application/json" -d '{"username":"testuser", "password1":"testpassword", "password2":"testpassword"}' https://lambda-mud-test.herokuapp.com/api/register/`
     const acc = { username: this.state.username, password1: this.state.password1, password2: this.state.password2 }
-    axios
+    axiosWithAuth()
       .post(url, acc)
       .then((res) => {
-        console.log(res.data)
+        localStorage.setItem('token', res.data.key)
+        this.props.history.push('/world')
       })
       .catch((err) => {
         console.log(err)

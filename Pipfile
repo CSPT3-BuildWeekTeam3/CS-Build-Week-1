@@ -14,8 +14,12 @@ django-cors-headers = "*"
 gunicorn = "*"
 django-heroku = "*"
 django-rest-api = "*"
+dj-database-url = "*"
+whitenoise = "*"
+django-rest-knox = "*"
 
 [dev-packages]
+pylint = "*"
 
 [requires]
 python_version = "3.7"

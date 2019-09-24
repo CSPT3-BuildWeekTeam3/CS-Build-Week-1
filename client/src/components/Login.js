@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 
-const url = 'https://lambda-mud-test.herokuapp.com/api/login/';
+const url = '/login/';
 
 export default class Login extends Component {
   constructor(props) {
@@ -29,10 +30,11 @@ export default class Login extends Component {
     // curl -X POST -H "Content-Type: application/json" -d '{"username":"testuser", "password":"testpassword"}' https://lambda-mud-test.herokuapp.com/api/login/
     event.preventDefault();
     const acc = { username: this.state.username, password: this.state.password }
-    axios
+    axiosWithAuth()
       .post(url, acc)
       .then((res) => {
-        console.log(res.data)
+        localStorage.setItem('token', res.data.key)
+        this.props.history.push('/')
       })
       .catch((err) => {
         alert('This username and/or password does not match our records');

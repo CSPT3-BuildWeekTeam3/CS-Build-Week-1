@@ -34,7 +34,7 @@ export default class Login extends Component {
       .post(url, acc)
       .then((res) => {
         localStorage.setItem('token', res.data.key)
-        this.props.history.push('/')
+        this.props.history.push('/world')
       })
       .catch((err) => {
         alert('This username and/or password does not match our records');

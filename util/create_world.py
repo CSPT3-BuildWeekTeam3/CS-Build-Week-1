@@ -1,14 +1,6 @@
 from django.contrib.auth.models import User
 from adventure.models import Player, Room
 
-import os
-import django
-
-if __name__ == '__main__':  
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myproject.settings')
-
-    django.setup()
-
 Room.objects.all().delete()
 
 r_outside = Room(title="Outside Cave Entrance",

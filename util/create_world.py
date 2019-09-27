@@ -77,7 +77,7 @@ class World:
                 y += 1
                 direction *= -1
             # Create a room in the given direction
-            room = Room(id=room_count, title="A Generic Room", description="This is a generic room.", x=x, y=y)
+            room = Room(title="A Generic Room", description="This is a generic room.", x=x, y=y)
             # Note that in Django, you'll need to save the room after you create it
             self.grid[y][x] = room
             # Connect the new room to the previous room

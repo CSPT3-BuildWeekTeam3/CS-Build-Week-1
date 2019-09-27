@@ -89,7 +89,7 @@ class World:
             room_count += 1
 
 w = World()
-num_rooms = 30
+num_rooms = 36
 width = 6
 height = 6
 w.generate_rooms(width, height, num_rooms)

@@ -39,11 +39,6 @@ Room.objects.all().delete()
 # r_narrow.connectRooms(r_treasure, "n")
 # r_treasure.connectRooms(r_narrow, "s")
 
-players=Player.objects.all()
-for p in players:
-  p.currentRoom=1
-  p.save()
-
 class World:
     def __init__(self):
         self.grid = None
@@ -93,3 +88,8 @@ num_rooms = 36
 width = 6
 height = 6
 w.generate_rooms(width, height, num_rooms)
+
+players=Player.objects.all()
+for p in players:
+  p.currentRoom=0
+  p.save()

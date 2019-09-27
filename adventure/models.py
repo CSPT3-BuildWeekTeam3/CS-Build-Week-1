@@ -42,15 +42,15 @@ class Room(models.Model):
 
 class Player(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    currentRoom = models.IntegerField(default=0)
+    currentRoom = models.IntegerField(default=-1)
     uuid = models.UUIDField(default=uuid.uuid4, unique=True)
     def initialize(self):
-        if self.currentRoom == 0:
+        if self.currentRoom == -1:
             self.currentRoom = Room.objects.first().room_id
             self.save()
     def room(self):
         try:
-            return Room.objects.get(id=self.currentRoom)
+            return Room.objects.get(room_id=self.currentRoom)
         except Room.DoesNotExist:
             self.initialize()
             return self.room()

@@ -6,6 +6,7 @@ from rest_framework.authtoken.models import Token
 import uuid
 
 class Room(models.Model):
+    room_id = models.IntergerField(primary_key=True)
     title = models.CharField(max_length=50, default="DEFAULT TITLE")
     description = models.CharField(max_length=500, default="DEFAULT DESCRIPTION")
     n_to = models.IntegerField(default=0)
@@ -15,9 +16,9 @@ class Room(models.Model):
     x = models.IntegerField(default=-1)
     y = models.IntegerField(default=-1)
     def connectRooms(self, destinationRoom, direction):
-        destinationRoomID = destinationRoom.id
+        destinationRoomID = destinationRoom.room_id
         try:
-            destinationRoom = Room.objects.get(id=destinationRoomID)
+            destinationRoom = Room.objects.get(room_id=destinationRoomID)
         except Room.DoesNotExist:
             print("That room does not exist")
         else:
@@ -45,7 +46,7 @@ class Player(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, unique=True)
     def initialize(self):
         if self.currentRoom == 0:
-            self.currentRoom = Room.objects.first().id
+            self.currentRoom = Room.objects.first().room_id
             self.save()
     def room(self):
         try:

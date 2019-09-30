@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 const url = '/registration/';
 
+
 class Register extends Component {
   state = {
     username: '',
@@ -20,9 +21,11 @@ class Register extends Component {
     e.preventDefault();
     //`curl -X POST -H "Content-Type: application/json" -d '{"username":"testuser", "password1":"testpassword", "password2":"testpassword"}' https://lambda-mud-test.herokuapp.com/api/register/`
     const acc = { username: this.state.username, password1: this.state.password1, password2: this.state.password2 }
+    console.log(acc)
     axiosWithAuth()
       .post(url, acc)
       .then((res) => {
+        console.log(res.data)
         localStorage.setItem('token', res.data.key)
         this.props.history.push('/world')
       })

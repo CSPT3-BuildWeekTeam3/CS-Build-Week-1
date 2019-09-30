@@ -20,7 +20,7 @@ class World extends React.Component {
   start = () => {
     const token = localStorage.getItem('token');
     axios({
-      url: `https://lambdamud-cs.herokuapp.com/api/adv/rooms/`, //some other groups backend
+      url: `https://cspt3-buildweek-backend.herokuapp.com/api/adv/rooms/`, //some other groups backend
       method: "GET",
       headers: {
         Authorization: token

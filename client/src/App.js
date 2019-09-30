@@ -2,7 +2,6 @@ import React from "react";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import Login from "./components/Login";
-import ChatBox from "./components/ChatBox";
 import Dungeon from "./components/Dungeon";
 import RoomInfo from "./components/RoomInfo";
 import Commands from "./components/Commands";
@@ -51,7 +50,6 @@ class App extends React.Component {
         ) : (
           <Container>
             <Dungeon />
-            <ChatBox />
             <Commands />
             <RoomInfo currentRoom={this.state.currentRoom} />
           </Container>

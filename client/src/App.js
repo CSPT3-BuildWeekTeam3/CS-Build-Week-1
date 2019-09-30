@@ -1,12 +1,13 @@
-import React from 'react';
-import NavBar from './components/NavBar';
-import Login from './components/Login';
-import ChatBox from './components/ChatBox';
-import Dungeon from './components/Dungeon';
-import RoomInfo from './components/RoomInfo';
-import Commands from './components/Commands';
-import { CssBaseline, Container } from '@material-ui/core';
-import axios from 'axios';
+import React from "react";
+import Home from "./components/Home";
+import NavBar from "./components/NavBar";
+import Login from "./components/Login";
+import ChatBox from "./components/ChatBox";
+import Dungeon from "./components/Dungeon";
+import RoomInfo from "./components/RoomInfo";
+import Commands from "./components/Commands";
+import { CssBaseline, Container } from "@material-ui/core";
+import axios from "axios";
 
 class App extends React.Component {
   constructor() {
@@ -27,8 +28,7 @@ class App extends React.Component {
     axios
       .get('https://cspt3-buildweek-backend.herokuapp.com/api/adv/init', this.content)
       .then(data => {
-        this.setState({currentRoom: data.data})
-
+        this.setState({ currentRoom: data.data });
       })
       .catch(err => {
         console.log(err);
@@ -62,3 +62,5 @@ class App extends React.Component {
 }
 
 export default App;
+
+

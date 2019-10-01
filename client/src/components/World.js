@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
+
 class World extends React.Component {
   constructor() {
     super();
@@ -20,17 +21,18 @@ class World extends React.Component {
   start = () => {
     const token = localStorage.getItem('token');
     axios({
-      url: `https://cspt3-buildweek-backend.herokuapp.com/api/adv/rooms/`, //some other groups backend
+      url: 'https://cspt3-buildweek-backend.herokuapp.com/api/adv/init',
       method: "GET",
       headers: {
-        Authorization: token
+        Authorization: `Token ${token}`
       }
     })
       .then(res => {
+        console.log('s', res.data)
         this.setState({
-          startingRoom: res.data.rooms[0].title,
-          userID: {/*maybe grabbing the id?*/ },
-          startingDesc: res.data.rooms[0].description,
+          currentRoom: res.data.title,
+          id: res.data.room_id,
+          name: res.data.name
         });
       })
       .catch(err => {
@@ -39,7 +41,28 @@ class World extends React.Component {
   };
 
   move = (direction) => {
-    console.log('localstorage in the move', localStorage.getItem('token'), direction)
+    const token = localStorage.getItem('token');
+    axios({
+      url: "https://cspt3-buildweek-backend.herokuapp.com/api/adv/move",
+      method: "POST",
+      headers: {
+        Authorization: `Token ${token}`
+      },
+      data: {
+        direction: direction
+      }
+    })
+      .then(res => {
+        console.log('moving data', res.data);
+        this.setState({
+          currentRoom: res.data.title,
+          id: res.data.room_id,
+          err: res.data.error_msg
+        });
+      })
+      .catch(err => {
+        console.log(err)
+      })
   };
 
   render() {
@@ -49,10 +72,30 @@ class World extends React.Component {
           Lambda Multi-User Dungeon (MUD)
         </h1>
         <div className='startRoom'>
-          <h1>Starting Room</h1>
-          <h1>Room: {this.state.startingRoom}</h1>
+          <h1>Room: {this.state.currentRoom}</h1>
+          <h1>{this.state.id}</h1>
+          <h1 >{this.state.name}</h1>
+          <h1 className='red'>{this.state.err}</h1>
+
         </div>
         <div>
+          <div className='grid'>
+            <div className='box'>
+
+            </div>
+            <div className='box'>
+
+            </div>
+            <div className='box'>
+
+            </div>
+            <div className='box'>
+
+            </div>
+            <div className='box'>
+
+            </div>
+          </div>
           <button type="button" className="btn north" onClick={() => this.move('n')}>North</button>
           <button type="button" className="btn south" onClick={() => this.move('s')}>South</button>
           <button type="button" className="btn east" onClick={() => this.move('e')}>East</button>

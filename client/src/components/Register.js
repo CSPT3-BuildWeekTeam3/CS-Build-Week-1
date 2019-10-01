@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-const url = 'https://lambda-mud-test.herokuapp.com/api/registration/';
+const url = '/registration/';
 
 class Register extends Component {
   state = {
@@ -20,10 +20,11 @@ class Register extends Component {
     e.preventDefault();
     //`curl -X POST -H "Content-Type: application/json" -d '{"username":"testuser", "password1":"testpassword", "password2":"testpassword"}' https://lambda-mud-test.herokuapp.com/api/register/`
     const acc = { username: this.state.username, password1: this.state.password1, password2: this.state.password2 }
-    axios
+    axiosWithAuth()
       .post(url, acc)
       .then((res) => {
-        console.log(res.data)
+        localStorage.setItem('token', res.data.key)
+        this.props.history.push('/world')
       })
       .catch((err) => {
         console.log(err)
@@ -33,7 +34,7 @@ class Register extends Component {
   render() {
     return (
       <div>
-        <Form onSubmit={this.onSubmit} style={{outline: "3px solid dodgerblue", width: "40%", margin: "auto", padding: "10px", marginTop: "50px"}}>
+        <Form onSubmit={this.onSubmit} style={{ outline: "3px solid dodgerblue", width: "40%", margin: "auto", padding: "10px", marginTop: "50px" }}>
           <h3>Create an Account</h3>
           <FormGroup style={{ display: "flex", flexDirection: "column" }}>
             <Label>
@@ -62,7 +63,7 @@ class Register extends Component {
             <Button color="success">Submit</Button>
           </FormGroup>
         </Form>
-        <Form style={{outline: "1px solid red", width: "40%", margin: "auto", padding: "5px", marginTop: "50px"}}>
+        <Form style={{ outline: "1px solid red", width: "40%", margin: "auto", padding: "5px", marginTop: "50px" }}>
           <FormGroup style={{ display: "flex", flexDirection: "column" }}>
             <FormText>
               Already have an account?

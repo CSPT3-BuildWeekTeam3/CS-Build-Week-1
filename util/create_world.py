@@ -84,9 +84,9 @@ class World:
             room_count += 1
 
 w = World()
-num_rooms = 36
-width = 6
-height = 6
+num_rooms = 16
+width = 4
+height = 4
 w.generate_rooms(width, height, num_rooms)
 
 players=Player.objects.all()
